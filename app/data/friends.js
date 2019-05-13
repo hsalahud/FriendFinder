@@ -1,3 +1,4 @@
+//Array of objects of friends
 module.exports = [
   {
     name: 'John Doe',

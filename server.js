@@ -1,3 +1,4 @@
+//setting up server
 const express = require('express')
 const app = express()
 const { join } = require('path')
@@ -11,12 +12,14 @@ app.use(express.static(join(__dirname, '/app/public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+//bringing in data api
 const routesAPI = require('./app/routing/apiRoutes.js')
 // const routesHTML = require('./app/routing/htmlRoutes.js')
 
 routesAPI(app)
 // routesHTML(app)
 
+//listening on port 3000 else on whatever heroku decides
 app.listen(process.env.PORT || 3000)
 
 

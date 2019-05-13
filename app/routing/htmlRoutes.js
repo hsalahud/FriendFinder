@@ -1,4 +1,4 @@
-// Using XPathExpression.static instead
+// Using XPathExpression.static instead but I left the code here to show what I would do if I was not using static. Tested the code below and it works.
 
 
 // const { join } = require('path')

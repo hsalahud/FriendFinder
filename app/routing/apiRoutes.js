@@ -1,3 +1,4 @@
+//bringing in friends data
 let friends = require('../data/friends.js')
 
 module.exports = app => {

@@ -1,11 +1,12 @@
 const fetch = window.fetch
 
-let submission = {}
-let selectedChoices = []
+//Variable to determine the lowest score among friends
 let scoreDiff
 
+//function that adds up all values in an array, will be used as a callback function the reduce method
 const reducer = (accumulator, currentValue) => accumulator + currentValue
 
+//Fetching our friends data
 const getFriends = _ => {
   fetch('/friends')
     .then ( r => r.json())
@@ -15,25 +16,28 @@ const getFriends = _ => {
       //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
       //https://www.w3schools.com/jsref/jsref_map.asp
       //https://stackoverflow.com/questions/45342155/how-to-subtract-one-array-from-another-in-javascript/45342187
+      //We go over our objects and find the scores.
       for (let i = 0; i <= friends.length-2; i++){
+        //we use the map function along with it's item and index parameters to subtract each value of two arrays. One array is the one we just submitted and the other is one of the friends
         scoreDiff = friends[friends.length-1].scores.map((item, index) => item - friends[i].scores[index])
+        //We then use reduce and math.abs to sum the value of element in the array
         scoreDiff = Math.abs(scoreDiff.reduce(reducer))
         friends[i].scoreDiff = scoreDiff
       }
       //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      //Then we sort the array from least to greatest
       friends.sort((a, b) => {
         return a.scoreDiff - b.scoreDiff
       })
-      console.log(friends[0])
 
+      //The first element in the array is the best match so we set it up to display in the modal
       document.querySelector('#bestName').innerHTML = friends[0].name
       document.querySelector('#bestImage').setAttribute('src', friends[0].image)
     })
     .catch (e => console.log(e))
 }
 
-// getFriends()
-
+//Add event listener to post the values we entered into the friends object of arrays
 document.addEventListener('click', e => {
 
   if (e.target.id === 'submit') {
@@ -67,35 +71,14 @@ document.addEventListener('click', e => {
 
       })
       .catch (e => console.error(e))
-
-
-    submission.name = document.querySelector('#name').value
-    submission.image = document.querySelector('#profileLink').value
-    
-
-    selectedChoices.push(a1)
-    selectedChoices.push(a2)
-    selectedChoices.push(a3)
-    selectedChoices.push(a4)
-    selectedChoices.push(a5)
-    selectedChoices.push(a6)
-    selectedChoices.push(a7)
-    selectedChoices.push(a8)
-    selectedChoices.push(a9)
-    selectedChoices.push(a10)
-
-    submission.scores = selectedChoices
-
-
-    
   }
-
-
 })
 
 
+// Note: I should use this instead of adding a new key to our data: https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/
 
 
+///Test code below for my own use.
 
 
 // New friend will be the last in the array

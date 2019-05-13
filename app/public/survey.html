@@ -9,6 +9,7 @@
   <title>Survey</title>
 </head>
 
+<!-- Survey form including questions we ask -->
 <body>
   <h1> Let's begin the Survey</h1>
   <h6> For each of the questions, 1 means strongly diagree and 5 means strongly agree.</h6>
@@ -174,7 +175,7 @@
     </form>
   </div>
 
-
+<!-- Modal for when we trigger it when clicking on submit button -->
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -190,6 +191,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./assets/javascript/app.js"></script>
+
+  <!-- Script to initiate select forms and modal -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var elems = document.querySelectorAll('select');
