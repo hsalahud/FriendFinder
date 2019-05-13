@@ -17,7 +17,7 @@ const routesAPI = require('./app/routing/apiRoutes.js')
 routesAPI(app)
 // routesHTML(app)
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 
 //Note: js file linked to html is not found when I use html routes
